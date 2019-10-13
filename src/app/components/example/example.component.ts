@@ -35,7 +35,34 @@ export class ExampleComponent implements OnInit {
       () => console.log("new action")
     ).catch(
       (error) => console.log("Error")
-    )    
+    )
+  }
+
+  asynMultiResolve() {
+    Promise.resolve("Completed")
+      .then(
+        (value) => {
+          return 'Completed Two';
+        },
+        (error) => console.error(error)
+      )
+      .then(
+        (value) => console.log(value),
+        (error) => console.error(error)
+      );
+
+  }
+
+  asynMultiReject() {
+    Promise.reject('Rejected')
+      .then(
+        (value) => console.log(value)
+      )
+      .then(
+        (value) => console.log(value),
+        (error) => console.error(error)
+      );
+
   }
 
 
